@@ -11,6 +11,7 @@ const meta: Meta<typeof Navigator> = {
   component: Navigator,
   args: {
     options: {
+      animation: 'right',
       header: {
         headerColor: '#f1f1f1',
         titleColor: '#272727',
@@ -19,7 +20,7 @@ const meta: Meta<typeof Navigator> = {
         border: true,
         shadow: true,
         buttonDetail: true,
-        arrowStyle: 'chevron',
+        pointerShape: 'chevron',
         titleAlign: 'center',
       },
     },

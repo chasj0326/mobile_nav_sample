@@ -30,6 +30,7 @@ const Container = styled.div`
   flex-direction: column;
   margin: 0;
   overflow: hidden;
+
   @media (max-width: 767px) {
     width: 100%;
     height: 100%;
