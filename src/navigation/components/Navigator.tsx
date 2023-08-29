@@ -34,18 +34,39 @@ const Navigator = ({
 }: NavigatorProps) => {
   const navigation = useNavigation();
 
+  const screenArray = useMemo(
+    () => childrenToArray<ScreenProps>(children, Screen),
+    [children]
+  );
+
   const currentScreen = useMemo(
     () =>
-      childrenToArray<ScreenProps>(children, Screen).find(
-        child => navigation.current === child.props.name
+      screenArray.find(
+        screen => navigation.current === screen.props.name
       ),
-    [children, navigation]
+    [screenArray, navigation]
   );
 
   const currentTitle = useMemo(
     () => currentScreen && currentScreen.props.title,
     [currentScreen]
   );
+
+  const { prevTitle, nextTitle } = useMemo(() => {
+    const prevScreen = screenArray.find(
+      screen =>
+        navigation.history.at(-2) === screen.props.name
+    );
+    const nextScreen = screenArray.find(
+      screen =>
+        navigation.poppedHistory.at(-1) ===
+        screen.props.name
+    );
+    return {
+      prevTitle: prevScreen?.props.title,
+      nextTitle: nextScreen?.props.title,
+    };
+  }, [navigation, screenArray]);
 
   const headerOptions = options?.header || {};
   const {
@@ -65,7 +86,7 @@ const Navigator = ({
     color: titleColor,
     borderBottom: border ? '1px solid #27272735' : 'none',
     boxShadow: shadow
-      ? '1px 1px 1px 1px #27272735'
+      ? '0px 1px 2px 0.5px #27272735'
       : 'none',
   };
   const titleStyle: CSSProperties = {
@@ -82,7 +103,7 @@ const Navigator = ({
           style={buttonStyle}
           className='back'
           onClick={navigation.goBack}
-          disabled={navigation.history.length === 1}>
+          disabled={prevTitle === undefined}>
           <FontAwesomeIcon
             icon={
               arrowStyle === 'arrow'
@@ -90,7 +111,7 @@ const Navigator = ({
                 : faChevronLeft
             }
           />
-          {buttonDetail && <p>prev</p>}
+          {buttonDetail && <p>{prevTitle}</p>}
         </Button>
         <Title style={titleStyle}>{currentTitle}</Title>
         {forward ? (
@@ -98,10 +119,8 @@ const Navigator = ({
             style={buttonStyle}
             className='forward'
             onClick={navigation.goForward}
-            disabled={
-              navigation.poppedHistory.length === 0
-            }>
-            {buttonDetail && <p>next</p>}
+            disabled={nextTitle === undefined}>
+            {buttonDetail && <p>{nextTitle}</p>}
             <FontAwesomeIcon
               icon={
                 arrowStyle === 'arrow'
@@ -151,7 +170,7 @@ const Button = styled.button`
   cursor: pointer;
   & > p {
     margin: 0;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     font-weight: 400;
   }
   &:disabled {
