@@ -27,8 +27,14 @@ const Navigator = ({ children }: NavigatorProps) => {
     <>
       <header>
         <h4>{currentTitle}</h4>
-        <button onClick={navigation.goBack}>prev</button>
-        <button onClick={navigation.goForward}>
+        <button
+          onClick={navigation.goBack}
+          disabled={navigation.history.length === 1}>
+          prev
+        </button>
+        <button
+          onClick={navigation.goForward}
+          disabled={navigation.poppedHistory.length === 0}>
           forward
         </button>
       </header>

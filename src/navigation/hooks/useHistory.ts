@@ -42,6 +42,7 @@ const useHistory = (initialHistory: string[]) => {
     (newHistoryItem: string) => {
       const newHistory = [...history, newHistoryItem];
       setHistory(newHistory);
+      setPoppedHistory([]);
     },
     [history]
   );
@@ -51,6 +52,8 @@ const useHistory = (initialHistory: string[]) => {
   }, [history, setStoreHistory]);
 
   return {
+    history,
+    poppedHistory,
     goBack,
     goForward,
     navigate,
