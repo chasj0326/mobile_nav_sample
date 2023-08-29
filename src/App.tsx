@@ -3,9 +3,7 @@ import {
   Navigator,
   Screen,
 } from './navigation';
-import Home from './pages/Home';
-import Edit from './pages/Edit';
-import Post from './pages/Post';
+import { Home, Edit, Post } from './pages';
 
 const App = () => {
   return (
