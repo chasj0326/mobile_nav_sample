@@ -17,11 +17,26 @@ const useHistory = (initialHistory: string[]) => {
 
   const [history, setHistory] =
     useState<string[]>(storedHistory);
+  const [poppedHistory, setPoppedHistory] = useState<
+    string[]
+  >([]);
+
+  const current = useMemo(() => history.at(-1), [history]);
 
   const goBack = useCallback(() => {
-    const newHistory = history.slice(0, -1);
-    setHistory(newHistory);
-  }, [history]);
+    if (!current) return;
+    setPoppedHistory([...poppedHistory, current]);
+    setHistory(prev => prev.slice(0, -1));
+  }, [current, poppedHistory]);
+
+  const goForward = useCallback(() => {
+    if (!poppedHistory.length) return;
+    const lastPopped = poppedHistory.at(-1);
+    if (lastPopped) {
+      setHistory([...history, lastPopped]);
+      setPoppedHistory(prev => prev.slice(0, -1));
+    }
+  }, [history, poppedHistory]);
 
   const navigate = useCallback(
     (newHistoryItem: string) => {
@@ -35,10 +50,9 @@ const useHistory = (initialHistory: string[]) => {
     setStoreHistory(history);
   }, [history, setStoreHistory]);
 
-  const current = useMemo(() => history.at(-1), [history]);
-
   return {
     goBack,
+    goForward,
     navigate,
     current,
   };

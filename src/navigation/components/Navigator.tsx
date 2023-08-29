@@ -28,6 +28,9 @@ const Navigator = ({ children }: NavigatorProps) => {
       <header>
         <h4>{currentTitle}</h4>
         <button onClick={navigation.goBack}>prev</button>
+        <button onClick={navigation.goForward}>
+          forward
+        </button>
       </header>
       <section>{currentScreen}</section>
     </>
