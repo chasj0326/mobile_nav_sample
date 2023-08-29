@@ -9,8 +9,8 @@ import Post from './pages/Post';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Navigator initialScreenName='Home'>
+    <NavigationContainer initialScreenName='Home'>
+      <Navigator>
         <Screen
           name='Home'
           title='홈'

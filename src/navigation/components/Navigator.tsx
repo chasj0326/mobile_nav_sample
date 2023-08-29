@@ -1,22 +1,14 @@
 import useNavigation from '../hooks/useNavigationContext';
-import { useMemo, ReactNode, useEffect } from 'react';
+import { useMemo, ReactNode } from 'react';
 import Screen, { ScreenProps } from './Screen';
 import { childrenToArray } from '../utils/childrenToArray';
 
 interface NavigatorProps {
   children: ReactNode;
-  initialScreenName: string;
 }
 
-const Navigator = ({
-  initialScreenName,
-  children,
-}: NavigatorProps) => {
+const Navigator = ({ children }: NavigatorProps) => {
   const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.navigate(initialScreenName);
-  }, [initialScreenName]);
 
   const currentScreen = useMemo(
     () =>

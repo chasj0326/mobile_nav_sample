@@ -2,12 +2,16 @@ import useHistory from '../hooks/useHistory';
 import { NavigationContext } from '../hooks/useNavigationContext';
 import { ReactNode } from 'react';
 
-const NavigationContainer = ({
-  children,
-}: {
+interface NavigationContainerProps {
+  initialScreenName: string;
   children: ReactNode;
-}) => {
-  const initNavigation = useHistory([]);
+}
+
+const NavigationContainer = ({
+  initialScreenName,
+  children,
+}: NavigationContainerProps) => {
+  const initNavigation = useHistory([initialScreenName]);
   return (
     <NavigationContext.Provider value={initNavigation}>
       {children}
