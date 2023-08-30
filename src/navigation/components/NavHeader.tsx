@@ -112,7 +112,7 @@ const Button = styled.button`
   display: flex;
   gap: 5px;
   align-items: center;
-  min-width: 15%;
+  min-width: 20%;
   border: none;
   background-color: transparent;
   font-size: 16px;
@@ -134,5 +134,5 @@ const Button = styled.button`
   }
 `;
 const Blank = styled.div`
-  min-width: 15%;
+  min-width: 20%;
 `;
