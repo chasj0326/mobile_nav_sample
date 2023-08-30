@@ -6,9 +6,21 @@ import {
 import { Home, Edit, Post } from './pages';
 
 const App = () => {
+  const navigatorOptions = {
+    animation: {
+      animationType: 'updown',
+      timeout: 400,
+    },
+    header: {
+      forward: true,
+      border: true,
+      shadow: true,
+      buttonDetail: true,
+    },
+  };
   return (
     <NavigationContainer initialScreenName='Home'>
-      <Navigator>
+      <Navigator options={navigatorOptions}>
         <Screen
           name='Home'
           title='홈'

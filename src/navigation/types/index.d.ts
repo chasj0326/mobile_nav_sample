@@ -24,6 +24,8 @@ export type Animation =
   | 'none';
 
 export interface AnimationOptions {
-  animationType: Animation;
+  animationType: Animation | string;
   timeout: number;
 }
+
+export type ButtonShape = 'rectangle' | 'round' | 'circle';

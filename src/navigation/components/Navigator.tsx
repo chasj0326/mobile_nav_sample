@@ -12,7 +12,7 @@ import NavHeader from './NavHeader';
 import ScreenViewer from './ScreenViewer';
 import { AnimationOptions, HeaderOptions } from '../types';
 
-interface NavigatorProps {
+export interface NavigatorProps {
   children: ReactNode;
   options?: {
     animation?: AnimationOptions;

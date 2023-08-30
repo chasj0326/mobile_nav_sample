@@ -4,7 +4,7 @@ import {
   TransitionGroup,
 } from 'react-transition-group';
 import styled from '@emotion/styled';
-import { Animation, AnimationOptions } from '../types';
+import { AnimationOptions } from '../types';
 import {
   ANIMATION,
   ANIMATION_PREFIX,
@@ -19,7 +19,7 @@ interface ScreenViewerProps {
 }
 
 const getAnimationClass = (
-  animationType: Animation,
+  animationType: string,
   reversed: boolean
 ) => {
   if (
@@ -32,7 +32,7 @@ const getAnimationClass = (
         : ANIMATION_PREFIX.NORMAL
     }`;
   }
-  return animationType;
+  return animationType; // todo: animationType 예외처리
 };
 
 const ScreenViewer = ({
@@ -118,22 +118,6 @@ const ScreenContainer = styled.section<{
   }
 
   // slide
-  &.${ANIMATION.SLIDE}-normal-enter {
-    transform: translateX(100%);
-    z-index: 50;
-  }
-  &.${ANIMATION.SLIDE}-normal-enter-active {
-    transform: translateX(0%);
-    transition: ${({ timeout }) => timeout}ms ease-out;
-    z-index: 50;
-  }
-  &.${ANIMATION.SLIDE}-normal-exit {
-    transform: translateX(0%);
-  }
-  &.${ANIMATION.SLIDE}-normal-exit-active {
-    transform: translateX(0%);
-    transition: ${({ timeout }) => timeout}ms ease-out;
-  }
   &.${ANIMATION.SLIDE}-reverse-enter {
     transform: translateX(-100%);
     z-index: 50;
@@ -150,8 +134,40 @@ const ScreenContainer = styled.section<{
     transform: translateX(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }
+  &.${ANIMATION.SLIDE}-normal-enter {
+    transform: translateX(100%);
+    z-index: 50;
+  }
+  &.${ANIMATION.SLIDE}-normal-enter-active {
+    transform: translateX(0%);
+    transition: ${({ timeout }) => timeout}ms ease-out;
+    z-index: 50;
+  }
+  &.${ANIMATION.SLIDE}-normal-exit {
+    transform: translateX(0%);
+  }
+  &.${ANIMATION.SLIDE}-normal-exit-active {
+    transform: translateX(0%);
+    transition: ${({ timeout }) => timeout}ms ease-out;
+  }
 
   // updown
+  &.${ANIMATION.UPDOWN}-reverse-enter {
+    transform: translateY(-100%);
+    z-index: 50;
+  }
+  &.${ANIMATION.UPDOWN}-reverse-enter-active {
+    transform: translateY(0%);
+    transition: ${({ timeout }) => timeout}ms ease-out;
+    z-index: 50;
+  }
+  &.${ANIMATION.UPDOWN}-reverse-exit {
+    transform: translateY(0%);
+  }
+  &.${ANIMATION.UPDOWN}-reverse-exit-active {
+    transform: translateY(0%);
+    transition: ${({ timeout }) => timeout}ms ease-out;
+  }
   &.${ANIMATION.UPDOWN}-normal-enter {
     transform: translateY(60%);
     z-index: 50;
@@ -165,22 +181,6 @@ const ScreenContainer = styled.section<{
     transform: translateY(0%);
   }
   &.${ANIMATION.UPDOWN}-normal-exit-active {
-    transform: translateY(0%);
-    transition: ${({ timeout }) => timeout}ms ease-out;
-  }
-  &.${ANIMATION.UPDOWN}-reverse-enter {
-    transform: translateY(-60%);
-    z-index: 50;
-  }
-  &.${ANIMATION.UPDOWN}-reverse-enter-active {
-    transform: translateY(0%);
-    transition: ${({ timeout }) => timeout}ms ease-out;
-    z-index: 50;
-  }
-  &.${ANIMATION.UPDOWN}-reverse-exit {
-    transform: translateY(0%);
-  }
-  &.${ANIMATION.UPDOWN}-reverse-exit-active {
     transform: translateY(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }

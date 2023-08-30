@@ -3,6 +3,7 @@ import {
   Align,
   PointerShape,
   PointerDirection,
+  ButtonShape,
 } from '../types';
 
 export const DEFAULT_HEADER: {
@@ -50,4 +51,14 @@ export const POINTER_DIRECTION: {
 } = {
   LEFT: 'left',
   RIGHT: 'right',
+};
+
+export const DEFAULT_BUTTON: {
+  SHAPE: ButtonShape;
+  TEXT_COLOR: string;
+  BUTTON_COLOR: string;
+} = {
+  SHAPE: 'round',
+  TEXT_COLOR: '#ffffff',
+  BUTTON_COLOR: DEFAULT_HEADER.TINT_COLOR,
 };
