@@ -5,12 +5,15 @@ export interface ScreenProps {
   title: string;
 }
 
-// name, title 프로퍼티는 Navigator 에서 사용함
 const Screen = ({
   component: Component,
   name,
   title,
 }: ScreenProps) => {
+  if (!name || !title) {
+    // todo: name 식별자 예외 처리
+    throw new Error('screen must have unique name');
+  }
   return <Component />;
 };
 
