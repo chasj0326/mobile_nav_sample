@@ -11,7 +11,10 @@ const meta: Meta<typeof Navigator> = {
   component: Navigator,
   args: {
     options: {
-      animation: 'right',
+      animation: {
+        animationType: 'fade',
+        timeout: 500,
+      },
       header: {
         headerColor: '#f1f1f1',
         titleColor: '#272727',

@@ -86,6 +86,7 @@ export default NavHeader;
 
 const Header = styled.header`
   display: flex;
+  height: 60px;
   gap: 10px;
   justify-content: space-between;
   align-items: center;

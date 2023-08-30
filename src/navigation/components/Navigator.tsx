@@ -1,5 +1,11 @@
 import useNavigation from '../hooks/useNavigationContext';
-import { useMemo, ReactNode, useCallback } from 'react';
+import {
+  useMemo,
+  ReactNode,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import Screen, { ScreenProps } from './Screen';
 import { childrenToArray } from '../utils/childrenToArray';
 import NavHeader from './NavHeader';
@@ -16,11 +22,21 @@ export interface HeaderOptions {
   titleAlign?: 'center' | 'start' | 'end';
 }
 
-export type Animation = string;
+export type Animation =
+  | 'slide'
+  | 'fade'
+  | 'updown'
+  | 'pop'
+  | 'none';
+export interface AnimationOptions {
+  animationType: Animation;
+  timeout: number;
+}
+
 interface NavigatorProps {
   children: ReactNode;
   options?: {
-    animation?: Animation;
+    animation?: AnimationOptions;
     header?: HeaderOptions;
   };
 }
@@ -68,6 +84,13 @@ const Navigator = ({
     [getScreenByName, navigation]
   );
 
+  const [isGoingBack, setIsGoingBack] = useState(false);
+  useEffect(() => {
+    return () => {
+      setIsGoingBack(false);
+    };
+  }, [isGoingBack]);
+
   return (
     <>
       <NavHeader
@@ -75,13 +98,20 @@ const Navigator = ({
         currentTitle={currentTitle}
         prevTitle={prevTitle}
         nextTitle={nextTitle}
-        onPrev={navigation.goBack}
-        onNext={navigation.goForward}
+        onPrev={() => {
+          setIsGoingBack(true);
+          navigation.goBack();
+        }}
+        onNext={() => {
+          setIsGoingBack(false);
+          navigation.goForward();
+        }}
       />
       <ScreenViewer
-        animation={options?.animation}
+        animationOptions={options?.animation}
         currentName={navigation.current}
         currentScreen={currentScreen}
+        reversed={isGoingBack}
       />
     </>
   );
