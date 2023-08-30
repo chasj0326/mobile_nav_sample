@@ -4,7 +4,12 @@ import {
   TransitionGroup,
 } from 'react-transition-group';
 import styled from '@emotion/styled';
-import { Animation, AnimationOptions } from './Navigator';
+import { Animation, AnimationOptions } from '../types';
+import {
+  ANIMATION,
+  ANIMATION_PREFIX,
+  ANIMATION_TIMEOUT,
+} from '../constants';
 
 interface ScreenViewerProps {
   animationOptions?: AnimationOptions;
@@ -18,11 +23,13 @@ const getAnimationClass = (
   reversed: boolean
 ) => {
   if (
-    animationType === 'slide' ||
-    animationType === 'updown'
+    animationType === ANIMATION.SLIDE ||
+    animationType === ANIMATION.UPDOWN
   ) {
     return `${animationType}-${
-      reversed ? 'reverse' : 'normal'
+      reversed
+        ? ANIMATION_PREFIX.REVERSE
+        : ANIMATION_PREFIX.NORMAL
     }`;
   }
   return animationType;
@@ -34,8 +41,10 @@ const ScreenViewer = ({
   currentScreen,
   reversed,
 }: ScreenViewerProps) => {
-  const { animationType = 'none', timeout = 500 } =
-    animationOptions || {};
+  const {
+    animationType = ANIMATION.NONE,
+    timeout = ANIMATION_TIMEOUT,
+  } = animationOptions || {};
   const animationClass = getAnimationClass(
     animationType,
     reversed

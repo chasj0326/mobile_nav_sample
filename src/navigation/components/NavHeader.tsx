@@ -1,7 +1,8 @@
 import { CSSProperties } from 'react';
-import { HeaderOptions } from './Navigator';
+import { HeaderOptions } from '../types';
 import NavIcon from './NavIcon';
 import styled from '@emotion/styled';
+import { DEFAULT_HEADER } from '../constants';
 
 interface HeaderProps {
   headerOptions?: HeaderOptions;
@@ -21,15 +22,15 @@ const NavHeader = ({
   onNext,
 }: HeaderProps) => {
   const {
-    headerColor = '#f1f1f1',
-    titleColor = '#272727',
-    tintColor = '#0b52e1',
+    headerColor = DEFAULT_HEADER.HEADER_COLOR,
+    titleColor = DEFAULT_HEADER.TITLE_COLOR,
+    tintColor = DEFAULT_HEADER.TINT_COLOR,
     forward,
     border,
     shadow,
     buttonDetail,
-    pointerShape = 'chevron',
-    titleAlign = 'center',
+    pointerShape = DEFAULT_HEADER.POINTER_SHAPE,
+    titleAlign = DEFAULT_HEADER.TITLE_ALIGN,
   } = headerOptions || {};
 
   const headerStyle: CSSProperties = {

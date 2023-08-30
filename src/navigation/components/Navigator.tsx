@@ -10,28 +10,7 @@ import Screen, { ScreenProps } from './Screen';
 import { childrenToArray } from '../utils/childrenToArray';
 import NavHeader from './NavHeader';
 import ScreenViewer from './ScreenViewer';
-export interface HeaderOptions {
-  headerColor?: string;
-  titleColor?: string;
-  tintColor?: string;
-  forward?: boolean;
-  border?: boolean;
-  shadow?: boolean;
-  buttonDetail?: boolean;
-  pointerShape?: 'chevron' | 'arrow';
-  titleAlign?: 'center' | 'start' | 'end';
-}
-
-export type Animation =
-  | 'slide'
-  | 'fade'
-  | 'updown'
-  | 'pop'
-  | 'none';
-export interface AnimationOptions {
-  animationType: Animation;
-  timeout: number;
-}
+import { AnimationOptions, HeaderOptions } from '../types';
 
 interface NavigatorProps {
   children: ReactNode;
