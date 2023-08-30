@@ -8,7 +8,7 @@ import { Home, Edit, Post } from './pages';
 const App = () => {
   const navigatorOptions = {
     animation: {
-      animationType: 'updown',
+      animationType: 'slide',
       timeout: 400,
     },
     header: {
