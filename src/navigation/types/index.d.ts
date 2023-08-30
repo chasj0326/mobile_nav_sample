@@ -1,5 +1,8 @@
-export type Pointer = 'chevron' | 'arrow';
+export type PointerShape = 'chevron' | 'arrow';
+
 export type Align = 'center' | 'start' | 'end';
+
+export type PointerDirection = 'left' | 'right';
 
 export interface HeaderOptions {
   headerColor?: string;
@@ -9,7 +12,7 @@ export interface HeaderOptions {
   border?: boolean;
   shadow?: boolean;
   buttonDetail?: boolean;
-  pointerShape?: Pointer;
+  pointerShape?: PointerShape;
   titleAlign?: Align;
 }
 

@@ -2,7 +2,10 @@ import { CSSProperties } from 'react';
 import { HeaderOptions } from '../types';
 import NavIcon from './NavIcon';
 import styled from '@emotion/styled';
-import { DEFAULT_HEADER } from '../constants';
+import {
+  DEFAULT_HEADER,
+  POINTER_DIRECTION,
+} from '../constants';
 
 interface HeaderProps {
   headerOptions?: HeaderOptions;
@@ -36,10 +39,10 @@ const NavHeader = ({
   const headerStyle: CSSProperties = {
     backgroundColor: headerColor,
     color: titleColor,
-    borderBottom: border ? '1px solid #27272735' : 'none',
-    boxShadow: shadow
-      ? '0px 1px 2px 0.5px #27272735'
-      : 'none',
+    borderBottom: border
+      ? DEFAULT_HEADER.BORDER
+      : undefined,
+    boxShadow: shadow ? DEFAULT_HEADER.SHADOW : undefined,
   };
 
   const titleStyle: CSSProperties = {
@@ -54,12 +57,12 @@ const NavHeader = ({
     <Header style={headerStyle}>
       <Button
         style={buttonStyle}
-        className='back'
+        className={POINTER_DIRECTION.LEFT}
         onClick={onPrev}
         disabled={!prevTitle}>
         <NavIcon
           shape={pointerShape}
-          direction='left'
+          direction={POINTER_DIRECTION.LEFT}
         />
         {buttonDetail && <p>{prevTitle}</p>}
       </Button>
@@ -67,13 +70,13 @@ const NavHeader = ({
       {forward ? (
         <Button
           style={buttonStyle}
-          className='forward'
+          className={POINTER_DIRECTION.RIGHT}
           onClick={onNext}
           disabled={!nextTitle}>
           {buttonDetail && <p>{nextTitle}</p>}
           <NavIcon
             shape={pointerShape}
-            direction='right'
+            direction={POINTER_DIRECTION.RIGHT}
           />
         </Button>
       ) : (
@@ -123,10 +126,10 @@ const Button = styled.button`
     opacity: 0.5;
     cursor: default;
   }
-  &.back {
+  &.${POINTER_DIRECTION.LEFT} {
     justify-content: flex-start;
   }
-  &.forward {
+  &.${POINTER_DIRECTION.RIGHT} {
     justify-content: flex-end;
   }
 `;

@@ -1,3 +1,4 @@
+import { PointerDirection, PointerShape } from '../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -7,8 +8,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 interface NavIconProps {
-  shape: 'arrow' | 'chevron';
-  direction: 'left' | 'right';
+  shape: PointerShape;
+  direction: PointerDirection;
 }
 
 const iconMap = {

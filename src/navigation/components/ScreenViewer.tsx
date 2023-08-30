@@ -79,38 +79,38 @@ const ScreenContainer = styled.section<{
   box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.2);
 
   // fade
-  &.fade-enter {
+  &.${ANIMATION.FADE}-enter {
     opacity: 0;
   }
-  &.fade-enter-active {
+  &.${ANIMATION.FADE}-enter-active {
     opacity: 1;
     transition: ${({ timeout }) => timeout}ms ease-in-out;
   }
-  &.fade-exit {
+  &.${ANIMATION.FADE}-exit {
     opacity: 1;
   }
-  &.fade-exit-active {
+  &.${ANIMATION.FADE}-exit-active {
     opacity: 0;
     transition: ${({ timeout }) => timeout}ms ease-in-out;
   }
 
   //pop
-  &.pop-enter {
+  &.${ANIMATION.POP}-enter {
     transform: scale(0.9);
     opacity: 0.5;
     z-index: 50;
   }
-  &.pop-enter-active {
+  &.${ANIMATION.POP}-enter-active {
     transform: scale(1);
     opacity: 1;
     transition: ${({ timeout }) => timeout}ms ease-out;
     z-index: 50;
   }
-  &.pop-exit {
+  &.${ANIMATION.POP}-exit {
     transform: scale(1);
     opacity: 0;
   }
-  &.pop-exit-active {
+  &.${ANIMATION.POP}-exit-active {
     transform: scale(0.8);
     opacity: 0;
     transition: transform ${({ timeout }) => timeout}ms
@@ -118,69 +118,69 @@ const ScreenContainer = styled.section<{
   }
 
   // slide
-  &.slide-normal-enter {
+  &.${ANIMATION.SLIDE}-normal-enter {
     transform: translateX(100%);
     z-index: 50;
   }
-  &.slide-normal-enter-active {
+  &.${ANIMATION.SLIDE}-normal-enter-active {
     transform: translateX(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
     z-index: 50;
   }
-  &.slide-normal-exit {
+  &.${ANIMATION.SLIDE}-normal-exit {
     transform: translateX(0%);
   }
-  &.slide-normal-exit-active {
+  &.${ANIMATION.SLIDE}-normal-exit-active {
     transform: translateX(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }
-  &.slide-reverse-enter {
+  &.${ANIMATION.SLIDE}-reverse-enter {
     transform: translateX(-100%);
     z-index: 50;
   }
-  &.slide-reverse-enter-active {
+  &.${ANIMATION.SLIDE}-reverse-enter-active {
     transform: translateX(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
     z-index: 50;
   }
-  &.slide-reverse-exit {
+  &.${ANIMATION.SLIDE}-reverse-exit {
     transform: translateX(0%);
   }
-  &.slide-reverse-exit-active {
+  &.${ANIMATION.SLIDE}-reverse-exit-active {
     transform: translateX(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }
 
   // updown
-  &.updown-normal-enter {
+  &.${ANIMATION.UPDOWN}-normal-enter {
     transform: translateY(60%);
     z-index: 50;
   }
-  &.updown-normal-enter-active {
+  &.${ANIMATION.UPDOWN}-normal-enter-active {
     transform: translateY(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
     z-index: 50;
   }
-  &.updown-normal-exit {
+  &.${ANIMATION.UPDOWN}-normal-exit {
     transform: translateY(0%);
   }
-  &.updown-normal-exit-active {
+  &.${ANIMATION.UPDOWN}-normal-exit-active {
     transform: translateY(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }
-  &.updown-reverse-enter {
+  &.${ANIMATION.UPDOWN}-reverse-enter {
     transform: translateY(-60%);
     z-index: 50;
   }
-  &.updown-reverse-enter-active {
+  &.${ANIMATION.UPDOWN}-reverse-enter-active {
     transform: translateY(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
     z-index: 50;
   }
-  &.updown-reverse-exit {
+  &.${ANIMATION.UPDOWN}-reverse-exit {
     transform: translateY(0%);
   }
-  &.updown-reverse-exit-active {
+  &.${ANIMATION.UPDOWN}-reverse-exit-active {
     transform: translateY(0%);
     transition: ${({ timeout }) => timeout}ms ease-out;
   }
